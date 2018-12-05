@@ -19,6 +19,6 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		fillit_error(void);
 	list = get_tetriminos_from_file(argv[1]);
-	find_answer(list, argc);
+	find_answer(list);
 	return (0);
 }

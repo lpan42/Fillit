@@ -26,7 +26,7 @@ t_tetrimino_list	*get_tetriminos_from_file(char *filename)
 	read_byte = 1;
 	fd = open(filename, O_RDONLY);
 	start_element = make_list(&list);
-	start_element->alphabet = 64
+	start_element->alphabet = 64;
 	while (read_byte)
 	{
 		if ((read_byte = read(fd, list->tetrimino, 20)) != 20)
@@ -34,7 +34,8 @@ t_tetrimino_list	*get_tetriminos_from_file(char *filename)
 		list->alphabet++;
 		check_invalid_tetrimino(list);
 		move_to_square_one(list);
-		if (!(~(read_byte = read(fd, buffer, 1)) || *buffer != '\n')
+		if (!(~(read_byte = read(fd, buffer, 1))
+			|| (read_byte && *buffer != '\n'))
 			fillit_error_free_memory(list);
 		if (read_byte)
 			list = make_list(list->next);

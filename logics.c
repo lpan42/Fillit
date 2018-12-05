@@ -14,20 +14,35 @@
 #include <stdlib.h>
 #include "fillit.h"
 
-void	find_answer(t_tetrimino_list *list, int argc)
+static int count_terimino(t_tetrimino_list *list)
+{
+	int i;
+	t_tetrimino_list *ptr;
+
+	i = 0;
+	ptr = list;
+	while (ptr)
+	{
+		i++;
+		ptr = ptr->next;
+	}
+	return (i);
+}
+
+void	find_answer(t_tetrimino_list *list)
 {
 	int		sqr_size;
 	char	*map;
 	int		i;
 
-//	sqr_size = //TODO;
+	sqr_size = ft_sqrt(count_terimino(list) * 4);
 	while (1)
 	{
 		if (!(map = (char *)malloc(sizeof(char) * sqr_size * (sqr_size + 1))))
 			fillit_error_free_memory(list);
 		memset((void *)map, '.', sqr_size * sqr_size);
-		i = 0;
-		while (i < sqr_size)
+		i = -1;
+		while (++i < sqr_size)
 			map[i * (sqr_size + 1) + sqr_size] = '\n';
 		if (recursive(list, map, sqr_size))
 		{
@@ -60,8 +75,8 @@ static int	recursive(t_tetrimino_list *list, char *map, int sqr_size)
 		xy[1]++;
 	}
 	return (0);
-}				
-				
+}
+
 static int	check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 {
 	int				abcd[4];
