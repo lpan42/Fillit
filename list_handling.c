@@ -13,21 +13,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include "fillit.h"
-
+#include <stdio.h>//
 t_tetrimino_list	*make_list(t_tetrimino_list **list)
 {
 	if (!(*list = (t_tetrimino_list *)malloc(sizeof(t_tetrimino_list))))
-		fillit_error(void);
+		fillit_error();
 	(*list)->next = NULL;
+	printf("make : %p\n", (*list)->next);
 	return (*list);
 }
 
 void				delete_list(t_tetrimino_list *list)
 {
 	t_tetrimino_list	*temp;
+	temp = 0;
 
 	while (list)
 	{
+		printf("delete\n");
+		printf("%p\n", list);
 		temp = list->next;
 		free(list);
 		list = temp;
