@@ -22,9 +22,6 @@ int	check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 	i = -1;
 	while (++i < 4 && block[i].y + xy[1] < size && block[i].x + xy[0] < size)
 		abcd[i] = (block[i].y + xy[1]) * (size + 1) + (block[i].x + xy[0]);
-//	abcd[1] = (block[1].y + xy[1]) * (size + 1) + (block[1].x + xy[0]);
-//	abcd[2] = (block[2].y + xy[1]) * (size + 1) + (block[2].x + xy[0]);
-//	abcd[3] = (block[3].y + xy[1]) * (size + 1) + (block[3].x + xy[0]);
 	if (map[abcd[0]] == '.')
 		if (map[abcd[1]] == '.')
 			if (map[abcd[2]] == '.')

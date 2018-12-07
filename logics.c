@@ -14,11 +14,11 @@
 #include <stdlib.h>
 #include "fillit.h"
 #include "libft/libft.h"
-#include <stdio.h>
-static int count_terimino(t_tetrimino_list *list)
+
+static int	count_terimino(t_tetrimino_list *list)
 {
-	int i;
-	t_tetrimino_list *ptr;
+	int					i;
+	t_tetrimino_list	*ptr;
 
 	i = 0;
 	ptr = list;
@@ -30,7 +30,7 @@ static int count_terimino(t_tetrimino_list *list)
 	return (i);
 }
 
-int	check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
+int			check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 {
 	int				abcd[4];
 	t_coordinate	*block;
@@ -41,10 +41,7 @@ int	check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 	while (++i < 4 && block[i].y + xy[1] < size && block[i].x + xy[0] < size)
 		abcd[i] = (block[i].y + xy[1]) * (size + 1) + (block[i].x + xy[0]);
 	if (i < 4 && !(block[i].y + xy[1] < size && block[i].x + xy[0] < size))
-		return(0);
-//	abcd[1] = (block[1].y + xy[1]) * (size + 1) + (block[1].x + xy[0]);
-//	abcd[2] = (block[2].y + xy[1]) * (size + 1) + (block[2].x + xy[0]);
-//	abcd[3] = (block[3].y + xy[1]) * (size + 1) + (block[3].x + xy[0]);
+		return (0);
 	if (map[abcd[0]] == '.')
 		if (map[abcd[1]] == '.')
 			if (map[abcd[2]] == '.')
@@ -64,7 +61,7 @@ int	check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 	return (0);
 }
 
-int	recursive(t_tetrimino_list *list, char *map, int sqr_size)
+int			recursive(t_tetrimino_list *list, char *map, int sqr_size)
 {
 	int		xy[2];
 
@@ -73,7 +70,6 @@ int	recursive(t_tetrimino_list *list, char *map, int sqr_size)
 	xy[1] = 0;
 	while (xy[1] < sqr_size)
 	{
-		//printf("next : %p\n", list->next);
 		xy[0] = 0;
 		while (xy[0] < sqr_size)
 		{
@@ -86,7 +82,7 @@ int	recursive(t_tetrimino_list *list, char *map, int sqr_size)
 	return (0);
 }
 
-void	find_answer(t_tetrimino_list *list)
+void		find_answer(t_tetrimino_list *list)
 {
 	int		sqr_size;
 	char	*map;
@@ -95,7 +91,6 @@ void	find_answer(t_tetrimino_list *list)
 	sqr_size = ft_sqrt(count_terimino(list) * 4);
 	while (1)
 	{
-		//printf("sqr_size: %d\n", sqr_size);
 		if (!(map = (char *)malloc(sizeof(char) * sqr_size * (sqr_size + 1))))
 			fillit_error_free_memory(list);
 		ft_memset((void *)map, '.', sqr_size * (sqr_size + 1));
@@ -109,7 +104,6 @@ void	find_answer(t_tetrimino_list *list)
 			delete_list(list);
 			exit(0);
 		}
-		//printf("End of while\n");
 		free(map);
 		sqr_size++;
 	}

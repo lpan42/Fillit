@@ -13,30 +13,31 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-typedef struct	s_coordinate
+typedef struct				s_coordinate
 {
 	int	x;
 	int	y;
-}				t_coordinate;
+}							t_coordinate;
 
-typedef struct	s_tetrimino_list
+typedef struct				s_tetrimino_list
 {
 	char					tetrimino[4][5];
 	char					alphabet;
 	t_coordinate			block[4];
 	struct s_tetrimino_list	*next;
-}				t_tetrimino_list;
+}							t_tetrimino_list;
 
-int					main(int argc, char *argv[]);
-t_tetrimino_list	*get_tetriminos_from_file(char *filename);
-t_tetrimino_list	*make_list(t_tetrimino_list **list);
-void				delete_list(t_tetrimino_list *list);
-void				move_to_square_one(t_tetrimino_list *list);
-int					check_fill(t_tetrimino_list *list, char *map,
+int							main(int argc, char *argv[]);
+t_tetrimino_list			*get_tetriminos_from_file(char *filename);
+t_tetrimino_list			*make_list(t_tetrimino_list **list);
+void						delete_list(t_tetrimino_list *list);
+void						move_to_square_one(t_tetrimino_list *list);
+int							check_fill(t_tetrimino_list *list, char *map,
 	int size, int xy[]);
-void				check_invalid_tetrimino(t_tetrimino_list *list);
-void				find_answer(t_tetrimino_list *list);
-void				fillit_error_free_memory(t_tetrimino_list *list);
-void				fillit_error(void);
-int					recursive(t_tetrimino_list *list, char *map, int sqr_size);
+void						check_invalid_tetrimino(t_tetrimino_list *list);
+void						find_answer(t_tetrimino_list *list);
+void						fillit_error_free_memory(t_tetrimino_list *list);
+void						fillit_error(void);
+int							recursive(t_tetrimino_list *list, char *map,
+	int sqr_size);
 #endif
