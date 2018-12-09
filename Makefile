@@ -12,26 +12,26 @@
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror
-HEADER = -I ./fillit.h
+HEADER = -I ./
 NAME = fillit
 OBJECTS = $(SOURCES:.c=.o)
-SOURCES = ./libft/ft_memset.c\
-			libft/ft_sqrt.c\
-			check_tetriminos.c\
-			error.c\
-			fileio.c\
-			list_handling.c\
-			logics.c\
-			tetrimino_handling.c\
+SOURCES = ./check_tetriminos.c \
+			error.c \
+			fileio.c \
+			basic_functions.c \
+			logics.c \
+			tetrimino_handling.c \
 			main.c
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(FLAGS) $(HEADER) -o $(NAME) $(SOURCES)
+	$(CC) $(FLAGS) $(HEADER) -o $@ $^
 
-$(SOURCES): %o : %c
-	$(CC) -M -c $< $@
+$(OBJECTS): fillit.h
+
+$(OBJECTS): %.o : %.c
+	$(CC) -c $<
 
 .PHONY: clean
 
