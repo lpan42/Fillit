@@ -12,6 +12,7 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# include <unistd.h>
 
 typedef struct				s_coordinate
 {
@@ -40,4 +41,6 @@ void						fillit_error_free_memory(t_tetrimino_list *list);
 void						fillit_error(void);
 int							recursive(t_tetrimino_list *list, char *map,
 	int sqr_size);
+int							ft_sqrt(int nb);
+void						*ft_memset(void *b, int c, size_t len);
 #endif

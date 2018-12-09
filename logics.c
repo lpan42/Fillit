@@ -13,7 +13,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "fillit.h"
-#include "libft/libft.h"
 
 static int	count_terimino(t_tetrimino_list *list)
 {
@@ -35,6 +34,7 @@ int			check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 	int				abcd[4];
 	t_coordinate	*block;
 	int				i;
+	int				a;
 
 	block = list->block;
 	i = -1;
@@ -47,16 +47,13 @@ int			check_fill(t_tetrimino_list *list, char *map, int size, int xy[])
 			if (map[abcd[2]] == '.')
 				if (map[abcd[3]] == '.')
 				{
-					map[abcd[0]] = list->alphabet;
-					map[abcd[1]] = list->alphabet;
-					map[abcd[2]] = list->alphabet;
-					map[abcd[3]] = list->alphabet;
+					a = -1;
+					while (++a < 4)
+						map[abcd[a]] = list->alphabet;
 					if (recursive(list->next, map, size))
 						return (1);
-					map[abcd[0]] = '.';
-					map[abcd[1]] = '.';
-					map[abcd[2]] = '.';
-					map[abcd[3]] = '.';
+					while (--a > -1)
+						map[abcd[a]] = '.';
 				}
 	return (0);
 }
